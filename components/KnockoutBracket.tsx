@@ -1,5 +1,4 @@
 "use client";
-
 // components/KnockoutBracket.tsx
 //
 // Hiển thị bracket knockout World Cup 2026 (Round of 32 -> Final + Tranh hạng Ba)
@@ -144,7 +143,7 @@ function MatchCard({ match }: { match: Match }) {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75 motion-reduce:animate-none" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
             </span>
-            {match.current_minute ?? 0}&apos;
+            {match.current_minute ?? 0}'
           </span>
         )}
       </div>
