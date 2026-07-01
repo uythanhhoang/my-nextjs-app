@@ -2,7 +2,7 @@
 
 // components/NavBar.tsx
 // Thanh điều hướng chung, hiển thị trên mọi trang (gắn trong app/layout.tsx)
-// để người xem luôn thấy lối vào các trang chi tiết: Trang chủ / Vòng 32 đội / Bracket.
+// để người xem luôn thấy lối vào các trang chi tiết: Trang chủ / Vòng 32 đội / Vòng 16 đội / Bracket.
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -10,6 +10,7 @@ import { usePathname } from "next/navigation";
 const NAV_ITEMS = [
   { href: "/", label: "🏠 Trang chủ" },
   { href: "/round-of-32", label: "⚽ Vòng 32 đội" },
+  { href: "/round-of-16", label: "🔥 Vòng 16 đội" },
   { href: "/bracket", label: "🏆 Sơ đồ Bracket" },
 ];
 
