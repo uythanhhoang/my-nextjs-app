@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation";
 
 const NAV_ITEMS = [
   { href: "/", label: "🏠 Trang chủ" },
+  { href: "/live", label: "🔴 Trực tiếp" },
   { href: "/round-of-32", label: "⚽ Vòng 32 đội" },
   { href: "/round-of-16", label: "🔥 Vòng 16 đội" },
   { href: "/bracket", label: "🏆 Sơ đồ Bracket" },
