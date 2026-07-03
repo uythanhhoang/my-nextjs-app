@@ -3,9 +3,12 @@
 // Kiểu dữ liệu thủ công cho bảng match_goals (không regenerate supabase_types.ts
 // để tránh phá vỡ các component đã dùng kiểu cũ — theo quy ước của dự án).
 
+export type MatchGoalKind = "group" | "knockout";
+
 export type MatchGoal = {
   id: string;
   match_id: string;
+  match_kind: MatchGoalKind;
   team_id: string;
   player_id: string | null;
   player_name: string;
@@ -17,7 +20,9 @@ export type MatchGoal = {
   created_at: string;
 };
 
-export type MatchGoalInsert = Omit<MatchGoal, "id" | "created_at">;
+export type MatchGoalInsert = Omit<MatchGoal, "id" | "created_at"> & {
+  match_kind?: MatchGoalKind;
+};
 
 // Định dạng hiển thị phút: "53'" hoặc "90+4'"
 export function formatGoalMinute(goal: Pick<MatchGoal, "minute" | "minute_extra">) {

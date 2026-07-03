@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "seed:group-goals": "node scripts/seed-group-stage-goals.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.108.2",

@@ -2,7 +2,7 @@
 
 // components/TopScorersTable.tsx
 //
-// Bảng xếp hạng Vua phá lưới — tính từ Vòng 32 đội trở đi (bảng match_goals).
+// Bảng xếp hạng Vua phá lưới — gom từ match_goals (vòng bảng + vòng loại trực tiếp).
 // Tự cập nhật realtime khi có bàn thắng mới được nhập (subscribe trực tiếp
 // bảng match_goals rồi refetch view top_scorers, vì Realtime không phát trên view).
 
@@ -47,7 +47,9 @@ export default function TopScorersTable({ initialScorers }: { initialScorers: To
   if (scorers.length === 0) {
     return (
       <p className="text-slate-400">
-        Chưa có dữ liệu bàn thắng nào được ghi nhận từ Vòng 32 đội.
+        Chưa có dữ liệu bàn thắng nào. Chạy migration vòng bảng rồi{" "}
+        <code className="text-slate-500">npm run seed:group-goals</code> để nạp từ
+        openfootball/worldcup.json.
       </p>
     );
   }

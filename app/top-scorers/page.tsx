@@ -14,7 +14,8 @@ export default async function TopScorersPage() {
     <main className="min-h-screen bg-slate-900 p-8 text-white">
       <h1 className="mb-2 text-3xl font-bold">👟 Vua phá lưới — World Cup 2026</h1>
       <p className="mb-6 text-sm text-slate-400">
-        Thống kê bàn thắng từ Vòng 32 đội trở đi.
+        Thống kê bàn thắng toàn giải — vòng bảng (openfootball/worldcup.json) và vòng loại
+        trực tiếp (bảng match_goals).
       </p>
 
       {error ? (
