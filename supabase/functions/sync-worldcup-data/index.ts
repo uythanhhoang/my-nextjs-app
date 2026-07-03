@@ -125,6 +125,11 @@ Deno.serve(async (req: Request) => {
 
     const payload = await apiRes.json();
     const fixtures: ApiFixture[] = payload?.response ?? [];
+    const debugInfo = {
+      results: payload?.results,
+      errors: payload?.errors,
+      paging: payload?.paging,
+    };
 
     // --- 2. Nạp danh sách teams nội bộ để map tên -> id ---
     const { data: teams, error: teamsErr } = await supabase
@@ -224,11 +229,17 @@ Deno.serve(async (req: Request) => {
       updatedCount++;
     }
 
+    const debugNote =
+      fixtures.length === 0
+        ? `DEBUG (0 fixtures): ${JSON.stringify(debugInfo).slice(0, 1800)}`
+        : null;
+
     await supabase.from("sync_log").insert({
       source: "api-football",
       status: "success",
       matches_updated: updatedCount,
-      error_message: skipped.length > 0 ? skipped.join("; ").slice(0, 2000) : null,
+      error_message:
+        debugNote ?? (skipped.length > 0 ? skipped.join("; ").slice(0, 2000) : null),
     });
 
     return new Response(
@@ -237,6 +248,7 @@ Deno.serve(async (req: Request) => {
         fixtures_fetched: fixtures.length,
         matches_updated: updatedCount,
         skipped,
+        debugInfo,
         duration_ms: Date.now() - startedAt,
       }),
       { headers: { "Content-Type": "application/json" } },

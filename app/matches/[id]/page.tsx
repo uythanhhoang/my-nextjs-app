@@ -2,7 +2,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import type { Tables } from "@/supabase_types";
+import type { MatchGoal } from "@/types/match-goals";
 import MatchDetail from "@/components/MatchDetail";
+import GoalTimeline from "@/components/GoalTimeline";
 
 type Team = Pick<Tables<"teams">, "id" | "name" | "logo_url" | "flag_url">;
 
@@ -48,12 +50,27 @@ export default async function MatchDetailPage({
     notFound();
   }
 
+  const { data: goals } = await supabase
+    .from("match_goals")
+    .select("*")
+    .eq("match_id", id)
+    .order("minute", { ascending: true })
+    .order("minute_extra", { ascending: true, nullsFirst: true });
+
   return (
     <main className="min-h-screen bg-slate-900 p-8 text-white">
       <Link href="/live" className="mb-6 inline-block text-sm text-emerald-400 hover:underline">
         ← Quay lại Trực tiếp
       </Link>
       <MatchDetail initialMatch={match as unknown as MatchRow} />
+      <div className="mx-auto max-w-2xl">
+        <GoalTimeline
+          matchId={id}
+          homeTeamId={(match as unknown as MatchRow).home_team?.id ?? null}
+          awayTeamId={(match as unknown as MatchRow).away_team?.id ?? null}
+          initialGoals={(goals ?? []) as MatchGoal[]}
+        />
+      </div>
     </main>
   );
 }
