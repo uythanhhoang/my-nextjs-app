@@ -8,10 +8,11 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
+import { supabaseUntyped } from "@/lib/supabase-untyped";
 import type { TopScorerRow } from "@/types/top-scorers";
 
 async function fetchTopScorers(): Promise<TopScorerRow[]> {
-  const { data, error } = await supabase
+  const { data, error } = await supabaseUntyped
     .from("top_scorers")
     .select("*")
     .order("goals", { ascending: false });

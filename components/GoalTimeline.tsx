@@ -8,10 +8,11 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
+import { supabaseUntyped } from "@/lib/supabase-untyped";
 import { formatGoalMinute, type MatchGoal } from "@/types/match-goals";
 
 async function fetchGoals(matchId: string): Promise<MatchGoal[]> {
-  const { data, error } = await supabase
+  const { data, error } = await supabaseUntyped
     .from("match_goals")
     .select("*")
     .eq("match_id", matchId)

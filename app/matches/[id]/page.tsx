@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import { supabaseUntyped } from "@/lib/supabase-untyped";
 import type { Tables } from "@/supabase_types";
 import type { MatchGoal } from "@/types/match-goals";
 import MatchDetail from "@/components/MatchDetail";
@@ -50,7 +51,7 @@ export default async function MatchDetailPage({
     notFound();
   }
 
-  const { data: goals } = await supabase
+  const { data: goals } = await supabaseUntyped
     .from("match_goals")
     .select("*")
     .eq("match_id", id)

@@ -1,11 +1,11 @@
-import { supabase } from "@/lib/supabase";
+import { supabaseUntyped } from "@/lib/supabase-untyped";
 import type { TopScorerRow } from "@/types/top-scorers";
 import TopScorersTable from "@/components/TopScorersTable";
 
 export const revalidate = 0;
 
 export default async function TopScorersPage() {
-  const { data: scorers, error } = await supabase
+  const { data: scorers, error } = await supabaseUntyped
     .from("top_scorers")
     .select("*")
     .order("goals", { ascending: false });
