@@ -28,7 +28,7 @@ export default async function LivePage() {
   return (
     <main className="min-h-screen bg-slate-900 p-8 text-white">
       <div className="mb-6 flex items-center justify-between">
-        <h1 className="text-3xl font-bold">🔴 Trực tiếp — World Cup 2026</h1>
+        <h1 className="text-3xl font-bold">🟢 Trực tiếp — World Cup 2026</h1>
       </div>
 
       {error ? (

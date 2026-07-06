@@ -161,7 +161,7 @@ export default function LiveMatches({ initialMatches }: { initialMatches: MatchR
     <div className="space-y-10">
       <section>
         <h2 className="mb-3 text-lg font-semibold text-emerald-400">
-          🔴 Đang diễn ra {live.length > 0 && `(${live.length})`}
+          🟢 Đang diễn ra {live.length > 0 && `(${live.length})`}
         </h2>
         {live.length === 0 ? (
           <p className="text-sm text-slate-500">Hiện không có trận nào đang diễn ra.</p>

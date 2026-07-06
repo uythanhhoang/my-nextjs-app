@@ -1,21 +1,19 @@
 import { supabaseUntyped } from "@/lib/supabase-untyped";
-import type { TopScorerRow } from "@/types/top-scorers";
-import TopScorersTable from "@/components/TopScorersTable";
+import type { GoldenBootRow } from "@/types/golden-boot";
+import GoldenBootTable from "@/components/GoldenBootTable";
 
 export const revalidate = 0;
 
 export default async function TopScorersPage() {
-  const { data: scorers, error } = await supabaseUntyped
-    .from("top_scorers")
-    .select("*")
-    .order("goals", { ascending: false });
+  const { data: rows, error } = await supabaseUntyped
+    .from("golden_boot_top10")
+    .select("*");
 
   return (
     <main className="min-h-screen bg-slate-900 p-8 text-white">
-      <h1 className="mb-2 text-3xl font-bold">👟 Vua phá lưới — World Cup 2026</h1>
+      <h1 className="mb-2 text-3xl font-bold">👟 Top 10 Vua phá lưới — World Cup 2026</h1>
       <p className="mb-6 text-sm text-slate-400">
-        Thống kê bàn thắng toàn giải — vòng bảng (openfootball/worldcup.json) và vòng loại
-        trực tiếp (bảng match_goals).
+        Tính từ Vòng bảng đến hiện tại.
       </p>
 
       {error ? (
@@ -23,7 +21,7 @@ export default async function TopScorersPage() {
           ❌ Lỗi tải dữ liệu từ Supabase: {error.message}
         </div>
       ) : (
-        <TopScorersTable initialScorers={(scorers ?? []) as TopScorerRow[]} />
+        <GoldenBootTable initialRows={(rows ?? []) as GoldenBootRow[]} />
       )}
     </main>
   );
